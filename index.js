@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const escpos = require('escpos');
-const { Network, Printer } = escpos; // Destructure to use Network and Printer
+escpos.Network = require('escpos-network'); // Ensure this is required if not already done
 const app = express();
 app.use(express.json()); // Middleware for parsing JSON bodies
 app.use(cors()); // Allow all origins
@@ -30,8 +30,8 @@ app.post('/api/print', async (req, res) => {
   }
   // const device = new escpos.Network(printerIp);
   // const printer = new escpos.Printer(device);
-  const device = new Network(printerIp); // Use the correct constructor
-  const printer = new Printer(device);
+  const device = new escpos.Network(printerIp); // Create a Network device
+  const printer = new escpos.Printer(device); // Create a Printer instance
   try {
     device.open(() => {
       printer
