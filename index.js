@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const escpos = require('escpos');
-const escpos = require('escpos');
 const { Network, Printer } = escpos; // Destructure to use Network and Printer
 const app = express();
 app.use(express.json()); // Middleware for parsing JSON bodies
