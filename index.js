@@ -34,11 +34,13 @@ app.post('/api/print', async (req, res) => {
   const printer = new escpos.Printer(device); // Create a Printer instance
   try {
     device.open(() => {
+      console.log('Device opened, sending print job...');
       printer
         .align('ct')
         .text(printData)
         .cut()
         .close();
+      console.log('Print job sent successfully');
       res.json({ success: true });
     });
   } catch (error) {
