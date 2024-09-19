@@ -7,8 +7,8 @@ app.use(express.json()); // Middleware for parsing JSON bodies
 app.use(cors()); // Allow all origins
 // Mock Order Data
 const orderData = {
-  kot: "KOT Order: Table 5\n1x Chicken Curry\n1x Rice",
-  saveAndPrint: "Receipt\nTable 5\nTotal: $25.00"
+  kot: "KOT Order: Table 5 1x Chicken Curry 1x Rice",
+  saveAndPrint: "Receipt Table 5 Total: 25.00"
 };
 // Fetch KOT Print Data
 app.get('/api/kot', (req, res) => {
