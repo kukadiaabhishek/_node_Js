@@ -1,7 +1,8 @@
-const express = require('express');
+onst express = require('express');
 const cors = require('cors');
 const escpos = require('escpos');
-require('escpos-network');  // Ensure you are requiring the network module
+const escpos = require('escpos');
+const { Network, Printer } = escpos; // Destructure to use Network and Printer
 const app = express();
 app.use(express.json()); // Middleware for parsing JSON bodies
 app.use(cors()); // Allow all origins
@@ -28,8 +29,10 @@ app.post('/api/print', async (req, res) => {
   if (!printerIp || !printData) {
     return res.status(400).json({ error: 'Printer IP and print data are required' });
   }
-  const device = new escpos.Network(printerIp);
-  const printer = new escpos.Printer(device);
+  // const device = new escpos.Network(printerIp);
+  // const printer = new escpos.Printer(device);
+  const device = new Network(printerIp); // Use the correct constructor
+  const printer = new Printer(device);
   try {
     device.open(() => {
       printer
